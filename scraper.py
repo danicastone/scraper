@@ -23,7 +23,7 @@ except subprocess.CalledProcessError as e:
 
 with open('addresses.txt', 'r') as file:
      input = file.read()
-     input = regex.sub('\s', ',', input)
+     input = regex.sub('*\s', ',', input)
 with open('database.csv', 'a') as output:
      output.write(input)
    
