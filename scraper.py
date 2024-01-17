@@ -16,35 +16,34 @@ except subprocess.CalledProcessError as e:
 
 
 try:
-    subprocess.run('< copy.txt grep -zoP \'(?<=\\[10\\])(?s).*(?=Past)\' > addresses.txt', shell=True, check=True)
+     subprocess.run('< copy.txt grep -zoP \'(?<=\\[10\\])(?s).*(?=Past)\' > addresses.txt', 
+     shell=True, check=True)
 except subprocess.CalledProcessError as e:
      print(f'Command {e.cmd} failed with error {e.returncode}')
 
 
-with open('addresses.txt', 'r') as file:
-     input = file.read()
-     input = regex.sub('*\s', ',', input)
-with open('database.csv', 'a') as output:
-     output.write(input)
-   
+with open('addresses.txt', 'r') as input:
+     #read all the lines of the file into a list
+     list = input.readlines()
+     with open('database.csv', 'a') as output:
+          output.write('\n' + first + ',' + last + ',')
+          output.writelines((list[0]).strip())
+          output.writelines(regex.sub('\s+', ',', list[1]))
+#     temp_line = list[1]
+ #    print(list)
+ #    print(list[1])
+ #    print(temp_line)
+#     with open ('temp.txt', 'w') as temp:
+#          temp.writelines(temp_line)
+#          regex.sub('\s+', ',', temp.txt)
+#          print(temp_line) 
+#          list[1] = temp.readlines()
+#          print(list[1])
+#          with open ('database.csv', 'a') as output:
+#               output.writelines(list[0])
+#               output.writelines(list[1])
+#               i.replace('/n/[ ]*|[ ]+/g', ',')
+#               output.writelines(i)
 
-#with open('addresses.txt', 'r+b') as file:
-     # memory-map the file, size 0 means whole file
-#     mm = mmap.mmap(file.fileno(),0)
-     #read content by line via standard file methods
-#     with open('db.csv', 'r+b') as database:
-#          database.write(mm.readline())
-
-#     input = file.read()
-#     for i, line in enumerate(input):
-#          if i == 1:
-#               input.replace(line1_search, replace_text)
-#               print(input)
-#         elif i == 2:
-#               data = file.read()
-#               data = data.replace(line2_search, replace_text)
-
-#with open(r'addresses.txt', 'w') as file:
-#     file.write(input)     #writing replacement data into text file
-
-#print('Text replaced!')
+input.close()
+output.close()   
