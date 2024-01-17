@@ -1,3 +1,9 @@
+# Custom additions of my own
+copy.html
+copy.txt
+addresses.txt
+database.csv
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
